@@ -87,14 +87,14 @@ if (Platform.OS === 'android') {
 }
 
 let styles = StyleSheet.create({
-  verticallyInverted: {
-    flex: 1,
-    transform: verticalTransform,
-  },
-  horizontallyInverted: {
-    flex: 1,
-    transform: horizontalTransform,
-  },
+    verticallyInverted: Platform.select({
+        ios: {flex: 1, transform: [{scaleX: -1}]},
+        android: {flex: 1, scaleX: -1},
+    }),
+    horizontallyInverted: Platform.select({
+        ios: {flex: 1, transform: [{scaleY: -1}]},
+        android: {flex: 1, scaleY: -1},
+    }),
 });
 
 module.exports = InvertibleScrollView;
